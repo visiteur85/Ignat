@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import Greeting from './Greeting'
+import {UserType} from "./HW3";
+import {log} from "util";
 
 type GreetingContainerPropsType = {
-    users: any // need to fix any
-    addUserCallback: any // need to fix any
+    users: UserType[]
+    addUserCallback: (name:string)=>void
 }
 
 // более простой и понятный для новичков
@@ -12,17 +14,25 @@ type GreetingContainerPropsType = {
 // более современный и удобный для про :)
 // уровень локальной логики
 const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users, addUserCallback}) => { // деструктуризация пропсов
-    const [name, setName] = useState<any>('') // need to fix any
-    const [error, setError] = useState<any>('') // need to fix any
+    const [name, setName] = useState<string>('') // need to fix any
+    const [error, setError] = useState<string | null>(null) // need to fix any
 
-    const setNameCallback = (e: any) => { // need to fix any
-        setName('') // need to fix
+    const setNameCallback = (newName: string) => {
+       setError(null)
+        setName(newName)
     }
+
+
+
     const addUser = () => {
-        alert(`Hello  !`) // need to fix
+        if (name.trim()!=="") {
+        alert(`Hello ${name}  !`) // need to fix
+        addUserCallback(name)
+        setName("")}
+        else {setError("Поле не может быть пустым")}
     }
 
-    const totalUsers = 0 // need to fix
+    const totalUsers = users.length
 
     return (
         <Greeting
