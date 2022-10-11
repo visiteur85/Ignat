@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import Greeting from './Greeting'
 import {UserType} from "./HW3";
-import {log} from "util";
+
+
 
 type GreetingContainerPropsType = {
     users: UserType[]
@@ -35,6 +36,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users, addUser
     const totalUsers = users.length
 
     return (
+        <>
         <Greeting
             name={name}
             setNameCallback={setNameCallback}
@@ -42,6 +44,8 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users, addUser
             error={error}
             totalUsers={totalUsers}
         />
+
+        </>
     )
 }
 
