@@ -6,6 +6,17 @@ function HW11() {
     const [value1, setValue1] = useState(0)
     const [value2, setValue2] = useState(100)
 
+    const arrValue = [value1, value2];
+    const setValue = (value: number | number[]) => {
+        if (typeof value === "object") {
+            setValue1(value[0])
+            setValue2(value[1])
+        }
+
+
+    }
+
+
     return (
         <div>
             <hr/>
@@ -15,14 +26,16 @@ function HW11() {
             <div>
                 <span>{value1}</span>
                 <SuperRange
-                    // сделать так чтоб value1 изменялось
+                    onChangeRange={setValue1}
+                    value={value1}
                 />
             </div>
 
             <div>
                 <span>{value1}</span>
                 <SuperDoubleRange
-                    // сделать так чтоб value1 и value2 изменялось
+                    value={arrValue}
+                    onChangeRange={setValue}
                 />
                 <span>{value2}</span>
             </div>
